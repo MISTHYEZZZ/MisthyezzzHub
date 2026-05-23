@@ -26,18 +26,18 @@ local PlayerESPConnections = {}
 -- =============================================
 -- RE-EXECUTE CLEANUP: Disconnect old connections & stop old loops
 -- =============================================
-if _G.ZenoHubConnections then
-    for _, conn in ipairs(_G.ZenoHubConnections) do
+if _G.MisthyezzHubConnections then
+    for _, conn in ipairs(_G.MisthyezzHubConnections) do
         pcall(function() conn:Disconnect() end)
     end
 end
-_G.ZenoHubConnections = {}
-_G.ZenoHubAlive = false -- signal old while loops to stop
+_G.MisthyezzHubConnections = {}
+_G.MisthyezzHubAlive = false -- signal old while loops to stop
 task.wait() -- let old loops check the flag
-_G.ZenoHubAlive = true
+_G.MisthyezzHubAlive = true
 
 local function trackConnection(conn)
-    table.insert(_G.ZenoHubConnections, conn)
+    table.insert(_G.MisthyezzHubConnections, conn)
     return conn
 end
 
@@ -133,80 +133,80 @@ local function runCommandOnPlayer(commandName, target)
 end
 
 pcall(function()
-    LocalPlayer.PlayerGui:FindFirstChild("ZenoAdminPanel"):Destroy()
+    LocalPlayer.PlayerGui:FindFirstChild("MisthyezzAdminPanel"):Destroy()
 end)
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ResetOnSpawn = false
-ScreenGui.Name = "ZenoAdminPanel"
+ScreenGui.Name = "MisthyezzAdminPanel"
 ScreenGui.DisplayOrder = 999999
 -- =============================================
--- ZENO TOGGLE BUTTON (ON UI - TOP RIGHT)
+-- Misthyezz TOGGLE BUTTON (ON UI - TOP RIGHT)
 -- =============================================
-local ZenoToggleBtn = Instance.new("TextButton")
-ZenoToggleBtn.Name = "ZenoToggle"
-ZenoToggleBtn.Size = isMobile and UDim2.new(0, 80, 0, 32) or UDim2.new(0, 90, 0, 32)
-ZenoToggleBtn.Position = UDim2.new(1, isMobile and -88 or -98, 0, 8)
-ZenoToggleBtn.BackgroundColor3 = Color3.fromRGB(10, 0, 0)
-ZenoToggleBtn.BackgroundTransparency = 0.28  -- black with ~72% opacity = transparency
-ZenoToggleBtn.Text = "Zeno ▼"
-ZenoToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-ZenoToggleBtn.Font = Enum.Font.GothamBold
-ZenoToggleBtn.TextSize = isMobile and 13 or 15
-ZenoToggleBtn.BorderSizePixel = 0
-ZenoToggleBtn.ZIndex = 1001
-ZenoToggleBtn.Parent = ScreenGui  -- keeps it anchored to main frame
+local MisthyezzToggleBtn = Instance.new("TextButton")
+MisthyezzToggleBtn.Name = "MisthyezzToggle"
+MisthyezzToggleBtn.Size = isMobile and UDim2.new(0, 80, 0, 32) or UDim2.new(0, 90, 0, 32)
+MisthyezzToggleBtn.Position = UDim2.new(1, isMobile and -88 or -98, 0, 8)
+MisthyezzToggleBtn.BackgroundColor3 = Color3.fromRGB(10, 0, 0)
+MisthyezzToggleBtn.BackgroundTransparency = 0.28  -- black with ~72% opacity = transparency
+MisthyezzToggleBtn.Text = "Misthyezz ▼"
+MisthyezzToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+MisthyezzToggleBtn.Font = Enum.Font.GothamBold
+MisthyezzToggleBtn.TextSize = isMobile and 13 or 15
+MisthyezzToggleBtn.BorderSizePixel = 0
+MisthyezzToggleBtn.ZIndex = 1001
+MisthyezzToggleBtn.Parent = ScreenGui  -- keeps it anchored to main frame
 
-local ZenoCorner = Instance.new("UICorner")
-ZenoCorner.CornerRadius = UDim.new(1, 0)  -- 
-ZenoCorner.Parent = ZenoToggleBtn
+local MisthyezzCorner = Instance.new("UICorner")
+MisthyezzCorner.CornerRadius = UDim.new(1, 0)  -- 
+MisthyezzCorner.Parent = MisthyezzToggleBtn
 
-local ZenoStroke = Instance.new("UIStroke")
-ZenoStroke.Color = Color3.fromRGB(204, 17, 17)  -- red border
-ZenoStroke.Thickness = 2
-ZenoStroke.Parent = ZenoToggleBtn
+local MisthyezzStroke = Instance.new("UIStroke")
+MisthyezzStroke.Color = Color3.fromRGB(204, 17, 17)  -- red border
+MisthyezzStroke.Thickness = 2
+MisthyezzStroke.Parent = MisthyezzToggleBtn
 
 -- Hover
-ZenoToggleBtn.MouseEnter:Connect(function()
-    TweenService:Create(ZenoToggleBtn, TweenInfo.new(0.18), {
+MisthyezzToggleBtn.MouseEnter:Connect(function()
+    TweenService:Create(MisthyezzToggleBtn, TweenInfo.new(0.18), {
         BackgroundTransparency = 0.15,
     }):Play()
 end)
-ZenoToggleBtn.MouseLeave:Connect(function()
-    TweenService:Create(ZenoToggleBtn, TweenInfo.new(0.18), {
+MisthyezzToggleBtn.MouseLeave:Connect(function()
+    TweenService:Create(MisthyezzToggleBtn, TweenInfo.new(0.18), {
         BackgroundTransparency = 0.28,
     }):Play()
 end)
 
 -- Toggle
-ZenoToggleBtn.MouseButton1Click:Connect(function()
+MisthyezzToggleBtn.MouseButton1Click:Connect(function()
     UI_OPEN = not UI_OPEN
     if UI_OPEN then
         MainFrame.Visible = true
         uiScale.Scale = 0.3
         TweenService:Create(uiScale, TweenInfo.new(0.35), {Scale = 1}):Play()
-        ZenoToggleBtn.Text = "Zeno ▼"
+        MisthyezzToggleBtn.Text = "Misthyezz ▼"
     else
         TweenService:Create(uiScale, TweenInfo.new(0.25), {Scale = 0.3}):Play()
         task.delay(0.25, function() MainFrame.Visible = false end)
-        ZenoToggleBtn.Text = "Zeno ▲"
+        MisthyezzToggleBtn.Text = "Misthyezz ▲"
     end
 end)
 
 -- Mobile touch
-ZenoToggleBtn.InputBegan:Connect(function(input)
+MisthyezzToggleBtn.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.Touch then
         UI_OPEN = not UI_OPEN
         if UI_OPEN then
             MainFrame.Visible = true
             uiScale.Scale = 0.3
             TweenService:Create(uiScale, TweenInfo.new(0.35), {Scale = 1}):Play()
-            ZenoToggleBtn.Text = "Zeno ▼"
+            MisthyezzToggleBtn.Text = "Misthyezz ▼"
         else
             TweenService:Create(uiScale, TweenInfo.new(0.25), {Scale = 0.3}):Play()
             task.delay(0.25, function() MainFrame.Visible = false end)
-            ZenoToggleBtn.Text = "Zeno ▲"
+            MisthyezzToggleBtn.Text = "Misthyezz ▲"
         end
     end
 end)
@@ -252,7 +252,7 @@ local Title = Instance.new("TextLabel",Top)
 Title.Size = UDim2.new(1,-55,1,0)
 Title.Position = UDim2.new(0,8,0,0)
 Title.BackgroundTransparency = 1
-Title.Text = "ZENO SPAMMER"
+Title.Text = "Misthyezz SPAMMER"
 Title.TextColor3 = Color3.new(1,1,1)
 Title.Font = Enum.Font.GothamBold
 Title.TextSize = isMobile and 12 or 13
@@ -716,7 +716,7 @@ Minimize.InputBegan:Connect(function(input)
 end)
 
 task.spawn(function()
-	while _G.ZenoHubAlive and ScreenGui.Parent do
+	while _G.MisthyezzHubAlive and ScreenGui.Parent do
 		task.wait(30)
 		configData.SemiKeybind = SemiKeybind.Name
 		configData.FullKeybind = FullKeybind.Name
@@ -726,7 +726,7 @@ task.spawn(function()
 	end
 end)
 
-print("Zeno Spammer" .. configData.ToggleUIKeybind .. " | balon: " .. tostring(BalloonEnabled))
+print("Misthyezz Spammer" .. configData.ToggleUIKeybind .. " | balon: " .. tostring(BalloonEnabled))
 end
 
 
@@ -741,7 +741,7 @@ end
 
 
 
-local CONFIG_FILE = "zeno_config.json"
+local CONFIG_FILE = "Misthyezz_config.json"
 local Config = { toggles = {}, panels = {}, sliders = {}, keybinds = {} }
 local Toggles = {}
 
@@ -1377,7 +1377,7 @@ local function instaFirePrompt(prompt)
 end
 
 task.spawn(function()
-    while _G.ZenoHubAlive do
+    while _G.MisthyezzHubAlive do
         if instaGrabEnabled and instaHumanoid and instaHumanoid.Health > 0 and instaHumanoid.WalkSpeed > 29 then
             local nearest = instaFindNearestStealPrompt()
             if nearest then
@@ -2862,10 +2862,10 @@ local plrs = Players
 local RunService = game:GetService("RunService")
 local run = RunService
 
-_G.ZenoHubAlive = true
-_G.ZenoHubConnections = {}
+_G.MisthyezzHubAlive = true
+_G.MisthyezzHubConnections = {}
 
-print("🚀 Zeno Hub Starting...")
+print("🚀 Misthyezz Hub Starting...")
 
 -- =============================================
 -- INTRUDER ALARM (NO BUTTON - HIDDEN)
@@ -3170,7 +3170,7 @@ ToggleHandlers.auto_grabber = function(state)
     autoGrabberEnabled = state
     if state then
         task.spawn(function()
-            while autoGrabberEnabled and _G.ZenoHubAlive do
+            while autoGrabberEnabled and _G.MisthyezzHubAlive do
                 local char = LocalPlayer.Character
                 local humanoid = char and char:FindFirstChildOfClass("Humanoid")
                 if humanoid and humanoid.Health > 0 then
@@ -3396,7 +3396,7 @@ task.spawn(function()
     end
     
     -- Reconnect every 3 seconds
-    while _G.ZenoHubAlive do
+    while _G.MisthyezzHubAlive do
         task.wait(3)
         if AntiRagdollEnabled then
             local liveConns = 0
@@ -3413,7 +3413,7 @@ end)
 
 -- Auto-save every 30 seconds
 task.spawn(function()
-    while _G.ZenoHubAlive do
+    while _G.MisthyezzHubAlive do
         task.wait(30)
         Config.toggles["anti_ragdoll"] = AntiRagdollEnabled
         saveConfig()
@@ -3710,7 +3710,7 @@ end
 -- REMOVE OLD GUI & CREATE SCREEN GUI
 -- =============================================
 
-local oldGui = LocalPlayer.PlayerGui:FindFirstChild("Zeno Hub")
+local oldGui = LocalPlayer.PlayerGui:FindFirstChild("Misthyezz Hub")
 if oldGui then oldGui:Destroy() end
 
 -- Cleanup old GUI on re-execute
@@ -3720,7 +3720,7 @@ pcall(function()
 end)
 
 local ScreenGui = createInstance("ScreenGui", {
-    Name = "Zeno Hub",
+    Name = "Misthyezz Hub",
     ResetOnSpawn = false,
     ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
     DisplayOrder = 999,
@@ -3888,7 +3888,7 @@ function OpenInstantStealUI(anchorPanel)
 
     task.spawn(function()
         local t = 0
-        while _G.ZenoHubAlive and screenGui.Parent do
+        while _G.MisthyezzHubAlive and screenGui.Parent do
             t = t + task.wait(0.03)
             local alpha = (math.sin(t * 1.2) + 1) / 2
             mainStroke.Color = Color3.fromRGB(
@@ -3985,7 +3985,7 @@ function OpenInstantStealUI(anchorPanel)
     closeBtn.MouseButton1Click:Connect(function()
         if dragConn then dragConn:Disconnect() end
         screenGui:Destroy()
-        -- Also turn off the ZenoHub toggle
+        -- Also turn off the MisthyezzHub toggle
         instaGrabEnabled = false
         Toggles["instant_grab_v1"] = false
         Config.toggles["instant_grab_v1"] = false
@@ -5000,7 +5000,7 @@ local function getPing()
 end
 
 task.spawn(function()
-    while _G.ZenoHubAlive do
+    while _G.MisthyezzHubAlive do
         local ping = getPing()
 
         if ping then
@@ -6834,7 +6834,7 @@ do
 
     -- Live update loop — reads Timer objects from in-game AdminPanel
     task.spawn(function()
-        while _G.ZenoHubAlive and task.wait(0.3) do
+        while _G.MisthyezzHubAlive and task.wait(0.3) do
             pcall(function()
                 local sf = LocalPlayer.PlayerGui.AdminPanel.AdminPanel.Content.ScrollingFrame
                 for _, cmd in ipairs(commands) do
@@ -6955,7 +6955,7 @@ end
 
 local defenseCmdSwitch = false
 task.spawn(function()
-    while _G.ZenoHubAlive and task.wait(0.1) do
+    while _G.MisthyezzHubAlive and task.wait(0.1) do
         pcall(function()
             local player = Players.LocalPlayer
             local sf = player.PlayerGui.AdminPanel.AdminPanel.Content.ScrollingFrame
@@ -7108,7 +7108,7 @@ end)
 
 -- Anti TP Scam detection loop
 task.spawn(function()
-    while _G.ZenoHubAlive and task.wait(0.1) do
+    while _G.MisthyezzHubAlive and task.wait(0.1) do
         if AntiTPEnabled() and defensePlot and #defensePodiums > 0 then
             local player = Players.LocalPlayer
             for _, plr in Players:GetPlayers() do
@@ -7136,7 +7136,7 @@ task.spawn(function()
 end)
 
 do
-    local panel, defenseContent = createMiniPanel("Zeno Defense", UDim2.new(0.7, 0, 0.15, 0), UDim2.new(0, 200, 0, 0))
+    local panel, defenseContent = createMiniPanel("Misthyezz Defense", UDim2.new(0.7, 0, 0.15, 0), UDim2.new(0, 200, 0, 0))
     createMiniToggle(defenseContent, "Auto Defense", 1, function(state)
         AutoDefenseEnabled = state
     end)
@@ -7192,7 +7192,7 @@ end
 
 do
     local panel, content = createMiniPanel(
-        "Zeno Admin Spammer",
+        "Misthyezz Admin Spammer",
         UDim2.new(0.7, 0, 0.35, 0),
         UDim2.new(0, 220, 0, 0)
     )
@@ -7210,7 +7210,7 @@ do
     createMiniToggle(content, "Admin Spammer", 2, function(state)
         local player = game.Players.LocalPlayer
         local playerGui = player:WaitForChild("PlayerGui")
-        local gui = playerGui:FindFirstChild("ZenoAdminPanel")
+        local gui = playerGui:FindFirstChild("MisthyezzAdminPanel")
 
         if state then
             if not gui then
@@ -7236,7 +7236,7 @@ do
             TeleportService:Teleport(game.PlaceId, game.Players.LocalPlayer)
         end },
         { id = "action_kick", label = "Kick Self", order = 2, fn = function()
-            game.Players.LocalPlayer:Kick("Kicking Player | By Zeno")
+            game.Players.LocalPlayer:Kick("Kicking Player | By Misthyezz")
         end },
         { id = "action_ragdoll", label = "Ragdoll Self", order = 3, fn = (function()
     -- Persistent caches (survive between calls)
@@ -7469,7 +7469,7 @@ local function buildToggleRow(item, parent)
         if handler then
             local ok, err = pcall(handler, newState)
             if not ok then
-                warn("[Zeno Hub] Toggle handler error for '" .. tostring(id) .. "': " .. tostring(err))
+                warn("[Misthyezz Hub] Toggle handler error for '" .. tostring(id) .. "': " .. tostring(err))
             end
         end
         
@@ -7687,7 +7687,7 @@ end)
 -- Blinking cursor for keybind listening
 task.spawn(function()
     local visible = true
-    while _G.ZenoHubAlive and ScreenGui and ScreenGui.Parent do
+    while _G.MisthyezzHubAlive and ScreenGui and ScreenGui.Parent do
         task.wait(0.5)
         if ListeningId then
             local el = ToggleElements[ListeningId]
@@ -7766,7 +7766,7 @@ task.defer(function()
             if handler then
                 local ok, err = pcall(handler, true)
                 if not ok then
-                    warn("[Zeno Hub] Restore handler error for '" .. tostring(id) .. "': " .. tostring(err))
+                    warn("[Misthyezz Hub] Restore handler error for '" .. tostring(id) .. "': " .. tostring(err))
                 end
             end
 
