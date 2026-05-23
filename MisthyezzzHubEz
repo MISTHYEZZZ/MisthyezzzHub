@@ -1418,35 +1418,11 @@ local unlockBaseUI = nil
 
 -- 🔴 RED THEME
 local Theme = {
-    Background = Color3.fromRGB(10, 6, 20),        -- Fond violet foncé
-    Panel = Color3.fromRGB(15, 8, 25),             -- Panneaux violets
-    Border = Color3.fromRGB(255, 80, 120),         -- Bordures rose
-    Accent = Color3.fromRGB(255, 60, 100),         -- Rose principal
-    AccentBright = Color3.fromRGB(100, 150, 255),  -- Bleu vif
-    TabActive = Color3.fromRGB(80, 100, 220),      -- Onglet actif BLEU
-    TabInactive = Color3.fromRGB(40, 20, 50),      -- Onglet inactif violet
-    TabHover = Color3.fromRGB(100, 60, 120),       -- Survol violet clair
-    ToggleOn = Color3.fromRGB(255, 80, 120),       -- Toggle ON rose
-    ToggleOff = Color3.fromRGB(50, 30, 60),        -- Toggle OFF violet foncé
-    KnobOn = Color3.fromRGB(100, 150, 255),        -- Bouton toggle BLEU
-    KnobOff = Color3.fromRGB(180, 180, 220),       -- Bouton toggle gris clair
-    Text = Color3.fromRGB(240, 230, 255),          -- Texte blanc/violet
-    TextDim = Color3.fromRGB(180, 160, 200),       -- Texte tamisé
-    SectionTitle = Color3.fromRGB(200, 160, 220),  -- Titres de section rose pâle
-    SectionBG = Color3.fromRGB(20, 12, 30),        -- Fond section
-    SectionBorder = Color3.fromRGB(255, 70, 110),  -- Bordure section rose
-    BindText = Color3.fromRGB(255, 100, 150),      -- Texte keybind rose
-    BindBG = Color3.fromRGB(80, 40, 70),           -- Fond keybind
-    MiniPanel = Color3.fromRGB(18, 10, 28),        -- Mini panneau violet
-    MiniTitle = Color3.fromRGB(30, 15, 40),        -- Titre mini panneau
-    MiniTitleBorder = Color3.fromRGB(255, 80, 120),-- Bordure titre rose
-    ButtonBG = Color3.fromRGB(60, 35, 70),         -- Fond bouton violet
-    ButtonBorder = Color3.fromRGB(255, 70, 110),   -- Bordure bouton rose
-    ButtonHover = Color3.fromRGB(90, 55, 100),     -- Survol bouton violet clair
-    ButtonText = Color3.fromRGB(240, 230, 255),    -- Texte bouton
-    Ready = Color3.fromRGB(100, 200, 150),         -- Vert/bleu pour READY
-    SliderTrack = Color3.fromRGB(50, 30, 60),      -- Piste slider
-    SliderFill = Color3.fromRGB(255, 80, 120),     -- Remplissage slider ROSE
+    Background = Color3.fromRGB(20, 10, 10),
+    Surface = Color3.fromRGB(35, 15, 15),
+    Accent1 = Color3.fromRGB(255, 60, 60),
+    Accent2 = Color3.fromRGB(150, 0, 0),
+    TextPrimary = Color3.fromRGB(255, 240, 240),
 }
 
 -- Check if object is in your plot
